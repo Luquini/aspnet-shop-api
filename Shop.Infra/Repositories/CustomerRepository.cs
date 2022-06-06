@@ -47,19 +47,42 @@ namespace Shop.Infra.Repositories
 
         public async Task<IEnumerable<ListCustomerQueryResult>> Get()
         {
-            return await _context
-             .Connection
-             .QueryAsync<ListCustomerQueryResult>(@"SELECT [ID],CONCAT([FirstName],' ',[LastName]) 
-             AS [Name], [Document],[Email] from [Customer]",
-             new { });
+            var result = await _context.Connection
+            .QueryAsync<ListCustomerQueryResult>(
+            @"SELECT Ctr.*, Addr.* FROM Customer as Ctr
+            INNER JOIN Address as Addr
+            ON Ctr.Id = Addr.CustomerId",
+            new[] { typeof(ListCustomerQueryResult), typeof(AddressQueryResult) },
+            map: (objects) =>
+            {
+                ListCustomerQueryResult res = (ListCustomerQueryResult)(objects[0]);
+                var address = (AddressQueryResult)(objects[1]);
+                res.Address = address;
+                return res;
+            },
+            splitOn: "Id");
+            return result;
         }
 
         public async Task<GetCustomerQueryResult> GetById(Guid id)
         {
-            return await _context.Connection.QueryFirstOrDefaultAsync<GetCustomerQueryResult>(
-            @"SELECT [ID],CONCAT([FirstName],' ',[LastName])
-            AS [Name], [Document],[Email] from [Customer] WHERE [ID]=@id",
-            new { id = id });
+            var result = await _context.Connection
+            .QueryAsync<GetCustomerQueryResult>(
+            @"SELECT Ctr.*, Addr.* FROM Customer as Ctr
+            INNER JOIN Address as Addr
+            ON Ctr.Id = Addr.CustomerId
+            WHERE Ctr.Id = @id",
+            new[] { typeof(GetCustomerQueryResult), typeof(AddressQueryResult) },
+            map: (objects) =>
+            {
+                GetCustomerQueryResult res = (GetCustomerQueryResult)(objects[0]);
+                var address = (AddressQueryResult)(objects[1]);
+                res.Address = address;
+                return res;
+            },
+            param: new { id },
+            splitOn: "Id");
+            return result.FirstOrDefault();
         }
 
         public async Task Update(Customer customer)
