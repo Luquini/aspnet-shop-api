@@ -1,14 +1,11 @@
 using Shop.Shared.Commands;
 using FluentValidator;
-using FluentValidator.Validation;
 using Shop.Domain.Entities;
-using Shop.Domain.ValueObjects;
 
 namespace Shop.Domain.Commands.CustomerCommands
 {
     public class CreateCustomerCommand : Notifiable, ICommand
     {
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Document { get; set; }

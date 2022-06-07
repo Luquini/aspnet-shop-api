@@ -23,6 +23,8 @@ namespace Shop.Api
             services.AddScoped<ShopDataContext, ShopDataContext>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<CustomerHandler, CustomerHandler>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ProductHandler, ProductHandler>();
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo

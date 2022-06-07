@@ -113,5 +113,6 @@ namespace Shop.Domain.Handlers
                 Notifications);
             }
         }
+
     }
 }

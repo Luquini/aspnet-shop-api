@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
-using Shop.Domain.Commands;
 using Shop.Domain.Commands.CustomerCommands;
-using Shop.Domain.Entities;
 using Shop.Domain.Handlers;
 using Shop.Domain.Queries;
 using Shop.Domain.Repositories;
@@ -34,14 +31,7 @@ namespace Shop.Api.Controllers
         {
             return await _repository.GetById(id);
         }
-        /*
-        [HttpGet]
-        [Route("v1/customers/{id}/orders")]
-        public Customer GetOrders(Guid id)
-        {
-            return null;
-        }
-        */
+
         [HttpPost]
         [Route("v1/customers")]
         public async Task<ICommandResult> Post([FromBody] CreateCustomerCommand command)
