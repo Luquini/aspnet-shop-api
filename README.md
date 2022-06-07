@@ -1,7 +1,7 @@
 # :books: Shop API
 
 Projeto tem o objetivo gerenciar sites de lojas virtuais
-[![diagrama](https://github.com/Luquini/aspnet-shop-api/blob/main/diagram.png)]
+![diagrama](https://github.com/Luquini/aspnet-shop-api/blob/main/diagram.png)
 
 <br>
 
