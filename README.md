@@ -1,5 +1,7 @@
 # :books: Shop API
+
 Projeto tem o objetivo gerenciar sites de lojas virtuais
+[alt](/diagram.png?raw=true "Diagrama")
 
 <br>
 
