@@ -36,7 +36,7 @@ dotnet run
 
 ## :book: Documentação
 
-Esse projeto possuí uma Documentação do Swagger na seguinte url http://localhost:5000/api-docs/#/
+Esse projeto possuí uma Documentação do Swagger na seguinte url http://localhost:5000/swagger/
 
 <br>
 
