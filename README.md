@@ -1,13 +1,14 @@
 # :books: Shop API
-Criada com o objetivo gerenciar sites de lojas virtuais
+Projeto tem o objetivo gerenciar sites de lojas virtuais
 
 <br>
 
 ## :sparkles: Features
 - CRUD de Clientes
 - CRUD de Endereços
-- CRUD de Vouchers (em construção)
-- CRUD de Produtos (em construção)
+- CRUD de Vouchers 
+- CRUD de Produtos
+- CRUD de Pedidos (em construção)
 - Pagamento Pagseguro (feito, falta integrar)
 - Fila RabbitMQ (em construção)
 

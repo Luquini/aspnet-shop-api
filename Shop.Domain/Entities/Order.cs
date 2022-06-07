@@ -7,6 +7,11 @@ namespace Shop.Domain.Entities
 {
     public class Order
     {
+        public Customer Customer { get; private set; }
+        public string Number { get; private set; }
+        public DateTime CreateDate { get; private set; }
+        public EShopStatus Status { get; private set; }
+        public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
         private readonly IList<OrderItem> _items;
         public Order(Customer customer)
         {
@@ -16,11 +21,6 @@ namespace Shop.Domain.Entities
             Status = EShopStatus.Created;
             _items = new List<OrderItem>();
         }
-        public Customer Customer { get; private set; }
-        public string Number { get; private set; }
-        public DateTime CreateDate { get; private set; }
-        public EShopStatus Status { get; private set; }
-        public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
 
         void Place() { }
 

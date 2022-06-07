@@ -8,6 +8,10 @@ namespace Shop.Domain.Entities
 {
     public class Customer : Entity
     {
+        public TName Name { get; private set; }
+        public TDocument Document { get; private set; }
+        public TEmail Email { get; private set; }
+        public Address Address { get; private set; }
         public Customer(TName name, TDocument document, TEmail email, Address address)
         {
             Name = name;
@@ -24,10 +28,5 @@ namespace Shop.Domain.Entities
             Email = email;
             Address = address;
         }
-
-        public TName Name { get; private set; }
-        public TDocument Document { get; private set; }
-        public TEmail Email { get; private set; }
-        public Address Address { get; private set; }
     }
 }

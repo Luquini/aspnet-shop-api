@@ -34,8 +34,8 @@ namespace Shop.Domain.Commands.ProductCommands
             .HasMinLen(ImageUrl, 1, "ImageUrl", "O campo Imagem não pode ser vazio")
             .HasMaxLen(ImageUrl, 250, "ImageUrl", "O campo Imagem não pode ter mais que 250 caracteres")
             .IsUrl(ImageUrl, "ImageUrl", "O campo Imagem precisa ser uma URL")
-            .IsGreaterThan(StockQuantity, 1, "StockQuantity", "Você precisa ter no mínimo um produto em estoque")
-            .Matchs(Price.ToString(), @"^\d{0,10}(.\d{1,2})?$", "Price", "O campo Preço está inválido")
+            .IsGreaterThan(StockQuantity, 0, "StockQuantity", "Você precisa ter no mínimo um produto em estoque")
+            .Matchs(Price.ToString(), @"^\d{0,8}(.\d{1,2})?$", "Price", "O campo Preço está inválido")
             );
             return !Valid;
         }

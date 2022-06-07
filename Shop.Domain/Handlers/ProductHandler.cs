@@ -24,6 +24,8 @@ namespace Shop.Domain.Handlers
         {
             try
             {
+                command.Validation();
+
                 AddNotifications(command.Notifications);
 
                 var product = new Product(command.Name, command.Description, command.Active,
@@ -57,6 +59,8 @@ namespace Shop.Domain.Handlers
         {
             try
             {
+                command.Validation();
+
                 AddNotifications(command.Notifications);
 
                 var id = Guid.Parse(command.Id);

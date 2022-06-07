@@ -5,13 +5,25 @@ namespace Shop.Domain.Entities
 {
     public class Address : Entity
     {
-        public string? City { get; set; }
-        public string? Street { get; set; }
-        public string? Number { get; set; }
-        public string? District { get; set; }
-        public string? State { get; set; }
-        public string? Country { get; set; }
-        public string? ZipCode { get; set; }
+        public string City { get; private set; }
+        public string Street { get; private set; }
+        public string Number { get; private set; }
+        public string District { get; private set; }
+        public string State { get; private set; }
+        public string Country { get; private set; }
+        public string ZipCode { get; private set; }
+
+        public Address(string city, string street,
+        string number, string district, string state, string country, string zipCode)
+        {
+            City = city;
+            Street = street;
+            Number = number;
+            District = district;
+            State = state;
+            Country = country;
+            ZipCode = zipCode;
+        }
 
         public override string ToString()
         {

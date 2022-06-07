@@ -25,6 +25,8 @@ namespace Shop.Api
             services.AddTransient<CustomerHandler, CustomerHandler>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ProductHandler, ProductHandler>();
+            services.AddTransient<IVoucherRepository, VoucherRepository>();
+            services.AddTransient<VoucherHandler, VoucherHandler>();
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
