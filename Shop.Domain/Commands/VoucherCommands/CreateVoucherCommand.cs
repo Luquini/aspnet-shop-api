@@ -6,20 +6,20 @@ namespace Shop.Domain.Commands.ProductCommands
 {
     public class CreateVoucherCommand : Notifiable, ICommand
     {
-        public string Code { get; set; }
-        public decimal Percent { get; set; }
-        public decimal DiscountValue { get; set; }
-        public int Quantity { get; set; }
-        public int DiscountType { get; set; }
-        public bool Active { get; set; }
-        public bool Used { get; set; }
-        public DateTime ExpiryOn { get; set; }
+        public string Code { get; private set; }
+        public decimal DiscountPercent { get; private set; }
+        public decimal DiscountValue { get; private set; }
+        public int Quantity { get; private set; }
+        public int DiscountType { get; private set; }
+        public bool Active { get; private set; }
+        public bool Used { get; private set; }
+        public DateTime ExpiryOn { get; private set; }
 
-        public CreateVoucherCommand(string code, decimal percent, decimal discountValue,
+        public CreateVoucherCommand(string code, decimal discountPercent, decimal discountValue,
         int quantity, int discountType, bool active, bool used, DateTime expiryOn)
         {
             Code = code;
-            Percent = percent;
+            DiscountPercent = discountPercent;
             DiscountValue = discountValue;
             Quantity = quantity;
             DiscountType = discountType;
@@ -29,7 +29,18 @@ namespace Shop.Domain.Commands.ProductCommands
         }
         public bool Validation()
         {
-            return !Valid;
+            AddNotifications(new ValidationContract()
+            .HasMinLen(Code, 1, "Code", "O campo Código não pode ser vazio")
+            .HasMaxLen(Code, 100, "Code", "O campo Código não pode ter mais que 100 caracteres")
+            .IsBetween(DiscountPercent, 0, 101, "DiscountPercent", "O campo Desconto deve ter um valor válido")
+            .IsGreaterThan(DiscountValue, 0, "DiscountValue", "O campo Desconto deve ter um valor válido")
+            .IsGreaterThan(Quantity, 0, "Quantity", "O campo Quantidade deve ter um valor válido")
+            .IsBetween(DiscountType, 0, 3, "DiscountType", "O campo TipoDesconto deve ter um valor válido")
+            .IsGreaterThan(ExpiryOn, DateTime.Now, "ExpiryOn", "O campo Expiração deve ter uma data válida")
+            .Matchs(DiscountPercent.ToString(), @"^\d{0,8}(.\d{1,2})?$", "DiscountPercent", "O campo Desconto deve ter um valor válido")
+            .Matchs(DiscountValue.ToString(), @"^\d{0,8}(.\d{1,2})?$", "DiscountValue", "O campo Desconto deve ter um valor válido")
+            );
+            return Valid;
         }
     }
 }

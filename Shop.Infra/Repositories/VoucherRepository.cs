@@ -53,7 +53,7 @@ namespace Shop.Infra.Repositories
               new
               {
                   Code = voucher.Code,
-                  Percent = voucher.Percent,
+                  Percent = voucher.DiscountPercent,
                   DiscountValue = voucher.DiscountValue,
                   Quantity = voucher.Quantity,
                   DiscountType = voucher.DiscountType,
@@ -73,7 +73,7 @@ namespace Shop.Infra.Repositories
              {
                  Id = voucher.Id,
                  Code = voucher.Code,
-                 Percent = voucher.Percent,
+                 Percent = voucher.DiscountPercent,
                  DiscountValue = voucher.DiscountValue,
                  Quantity = voucher.Quantity,
                  DiscountType = voucher.DiscountType,

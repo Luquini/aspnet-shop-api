@@ -42,8 +42,8 @@ CREATE TABLE [Voucher]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL,
 	[Code] VARCHAR(100) NOT NULL,
-	[Percent] DECIMAL(18, 2) NULL,
-	[DiscountValue] DECIMAL(18, 2) NULL,
+	[Percent] DECIMAL(10, 2) NULL,
+	[DiscountValue] DECIMAL(10, 2) NULL,
 	[Quantity] INT NOT NULL,
 	[DiscountType] INT NOT NULL,
 	[Active] BIT NOT NULL,

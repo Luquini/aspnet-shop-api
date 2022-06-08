@@ -6,13 +6,13 @@ namespace Shop.Domain.Commands.ProductCommands
 {
     public class UpdateProductCommand : Notifiable, ICommand
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool Active { get; set; }
-        public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
-        public int StockQuantity { get; set; }
+        public string Id { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public bool Active { get; private set; }
+        public decimal Price { get; private set; }
+        public string ImageUrl { get; private set; }
+        public int StockQuantity { get; private set; }
 
         public UpdateProductCommand(string id, string name, string description, bool active, decimal price,
         string imageUrl, int stockQuantity)
@@ -39,7 +39,7 @@ namespace Shop.Domain.Commands.ProductCommands
             .IsGreaterThan(StockQuantity, 0, "StockQuantity", "Você precisa ter no mínimo um produto em estoque")
             .Matchs(Price.ToString(), @"^\d{0,8}(.\d{1,2})?$", "Price", "O campo Preço está inválido")
             );
-            return !Valid;
+            return Valid;
         }
     }
 }

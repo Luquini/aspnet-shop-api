@@ -6,11 +6,11 @@ namespace Shop.Domain.Commands.CustomerCommands
 {
     public class CreateCustomerCommand : Notifiable, ICommand
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Document { get; set; }
-        public string Email { get; set; }
-        public Address Address { get; set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Document { get; private set; }
+        public string Email { get; private set; }
+        public Address Address { get; private set; }
 
         public CreateCustomerCommand(string firstName, string lastName, string document, string email, Address address)
         {
@@ -25,7 +25,7 @@ namespace Shop.Domain.Commands.CustomerCommands
         {
             Address.Validation();
             AddNotifications(Address.Notifications);
-            return !Valid;
+            return Valid;
         }
 
     }

@@ -8,12 +8,12 @@ namespace Shop.Domain.Commands.CustomerCommands
 {
     public class UpdateCustomerCommand : Notifiable, ICommand
     {
-        public string Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Document { get; set; }
-        public string Email { get; set; }
-        public Address Address { get; set; }
+        public string Id { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Document { get; private set; }
+        public string Email { get; private set; }
+        public Address Address { get; private set; }
 
         public UpdateCustomerCommand(string id, string firstName, string lastName, string document, string email, Address address)
         {
@@ -29,7 +29,7 @@ namespace Shop.Domain.Commands.CustomerCommands
         {
             Address.Validation();
             AddNotifications(Address.Notifications);
-            return !Valid;
+            return Valid;
         }
 
     }

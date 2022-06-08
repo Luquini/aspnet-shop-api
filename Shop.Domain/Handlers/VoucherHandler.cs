@@ -28,9 +28,9 @@ namespace Shop.Domain.Handlers
 
                 AddNotifications(command.Notifications);
 
-                var voucher = new Voucher(command.Code, command.Percent, command.DiscountValue,
-                command.Quantity, command.DiscountType, command.Active, command.Used,
-                command.ExpiryOn);
+                var voucher = new Voucher(command.Code, command.DiscountPercent,
+                command.DiscountValue, command.Quantity, (EDiscountType)command.DiscountType,
+                command.Active, command.Used, command.ExpiryOn);
 
                 if (Invalid)
                     return new CommandResult(
@@ -44,7 +44,7 @@ namespace Shop.Domain.Handlers
                 {
                     Id = voucher.Id,
                     Code = voucher.Code,
-                    Percent = voucher.Percent,
+                    Percent = voucher.DiscountPercent,
                     DiscountValue = voucher.DiscountValue,
                     Quantity = voucher.Quantity,
                     DiscountType = voucher.DiscountType,
@@ -73,9 +73,9 @@ namespace Shop.Domain.Handlers
 
                 var id = Guid.Parse(command.Id);
 
-                var voucher = new Voucher(id, command.Code, command.Percent, command.DiscountValue,
-                command.Quantity, command.DiscountType, command.Active, command.Used,
-                command.ExpiryOn);
+                var voucher = new Voucher(id, command.Code, command.DiscountPercent,
+                command.DiscountValue, command.Quantity, (EDiscountType)command.DiscountType,
+                command.Active, command.Used, command.ExpiryOn);
 
                 if (Invalid)
                     return new CommandResult(
@@ -89,7 +89,7 @@ namespace Shop.Domain.Handlers
                 {
                     Id = voucher.Id,
                     Code = voucher.Code,
-                    Percent = voucher.Percent,
+                    Percent = voucher.DiscountPercent,
                     DiscountValue = voucher.DiscountValue,
                     Quantity = voucher.Quantity,
                     DiscountType = voucher.DiscountType,
